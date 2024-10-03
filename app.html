@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <title>Tlocrt Stana</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #floorplan {
+            width: 600px;
+            height: 400px;
+            margin: 0 auto;
+            position: relative;
+            border: 2px solid #000;
+        }
+        .room {
+            position: absolute;
+            border: 1px solid #000;
+            background-color: #f2f2f2;
+            text-align: center;
+            cursor: pointer;
+        }
+        .room:hover {
+            background-color: #e6e6e6;
+        }
+        .room span {
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 style="text-align: center;">Tlocrt Trosobnog Stana</h1>
+    <div id="floorplan">
+        <!-- Dnevni Boravak -->
+        <div class="room" style="left: 0; top: 0; width: 300px; height: 200px;" onclick="sendCommand('dnevni boravak')">
+            <span>Dnevni Boravak</span>
+        </div>
+        <!-- Kuhinja -->
+        <div class="room" style="left: 300px; top: 0; width: 300px; height: 200px;" onclick="sendCommand('kuhinja')">
+            <span>Kuhinja</span>
+        </div>
+        <!-- Soba -->
+        <div class="room" style="left: 0; top: 200px; width: 300px; height: 200px;" onclick="sendCommand('soba')">
+            <span>Soba</span>
+        </div>
+        <!-- Svjetlo -->
+        <div class="room" style="left: 300px; top: 200px; width: 300px; height: 200px;" onclick="sendCommand('svjetlo')">
+            <span>Svjetlo</span>
+        </div>
+    </div>
+
+    <script>
+        function sendCommand(command) {
+            window.location.href = 'http://192.168.1.184/stt?text=' + encodeURIComponent(command);
+        }
+    </script>
+
+</body>
+</html>
