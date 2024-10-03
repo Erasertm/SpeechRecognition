@@ -1,0 +1,38 @@
+<body style="font-size:30px">
+    <!-- Input area -->
+    <center>
+        <label for="Speech Recognition">
+            <strong>Speech Recognition for<br/>VIDI X mikroračunalo<br/>na lokalnoj IP adresi
+                <br/>192.168.1.184<br/>
+            </strong>
+        </label>
+    </center>
+    <!-- Start Button -->
+    <center>
+        <button onclick="record()">Start Recording</button>
+    </center>
+    <!-- Below is the script for voice recognition and conversion to text -->
+    <!-- Updated Script -->
+    <script>
+        function record() {
+            var recognition = new webkitSpeechRecognition();
+            recognition.lang = "hr-HR";
+
+            recognition.onresult = function(event) {
+                console.log(event);
+                document.getElementById('speechToText').value = event.results[0][0].transcript;
+                location.href = "http://192.168.1.184/stt?text=" + event.results[0][0].transcript;
+            };
+
+            recognition.onerror = function(event) {
+                console.error('Speech recognition error detected: ' + event.error);
+            };
+
+            recognition.onnomatch = function(event) {
+                console.warn('No match found.');
+            };
+
+            recognition.start();
+        }
+    </script>
+</body>
