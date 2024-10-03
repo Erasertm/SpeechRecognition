@@ -5,70 +5,108 @@
     <title>Tlocrt Stana</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
         }
         #floorplan {
-            width: 600px;
-            height: 400px;
+            width: 800px;
+            height: 600px;
             margin: 0 auto;
             position: relative;
-            border: 2px solid #000;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
         }
         .room {
             position: absolute;
-            border: 1px solid #000;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            text-align: center;
-            padding: 5px;
-            box-sizing: border-box;
+            transition: all 0.3s ease;
         }
         .room:hover {
-            opacity: 0.8;
+            filter: brightness(1.1);
         }
-        /* Boje za svaku sobu */
-        .dnevni-boravak {
-            background-color: #FFD700; /* Zlatna */
-        }
-        .kuhinja {
-            background-color: #ADFF2F; /* Zelena */
-        }
-        .soba {
-            background-color: #87CEFA; /* Plava */
-        }
-        .svjetlo {
-            background-color: #FFB6C1; /* Roza */
-        }
-        /* Stil za tekst unutar soba */
-        .room span {
+        .room-label {
             font-weight: bold;
-            font-size: 18px;
+            font-size: 14px;
+            fill: #333;
+            text-transform: uppercase;
+        }
+        .wall {
+            position: absolute;
+            background-color: #333;
+        }
+        .door {
+            position: absolute;
+            fill: none;
+            stroke: #8B4513;
+            stroke-width: 3;
+        }
+        .window {
+            position: absolute;
+            fill: #87CEEB;
         }
     </style>
 </head>
 <body>
-
-    <h1 style="text-align: center;">Tlocrt Trosobnog Stana</h1>
+    <h1>Tlocrt Modernog Trosobnog Stana - Dodana Linija Kupaonice</h1>
     <div id="floorplan">
-        <!-- Dnevni Boravak -->
-        <div class="room dnevni-boravak" style="left: 0; top: 0; width: 300px; height: 200px;" onclick="sendCommand('dnevni boravak')">
-            <span>Dnevni Boravak</span>
-        </div>
-        <!-- Kuhinja -->
-        <div class="room kuhinja" style="left: 300px; top: 0; width: 300px; height: 200px;" onclick="sendCommand('kuhinja')">
-            <span>Kuhinja</span>
-        </div>
-        <!-- Soba -->
-        <div class="room soba" style="left: 0; top: 200px; width: 300px; height: 200px;" onclick="sendCommand('soba')">
-            <span>Soba</span>
-        </div>
-        <!-- Svjetlo -->
-        <div class="room svjetlo" style="left: 300px; top: 200px; width: 300px; height: 200px;" onclick="sendCommand('svjetlo')">
-            <span>Svjetlo</span>
-        </div>
+        <svg width="100%" height="100%">
+            <!-- Sobe -->
+            <polygon points="10,10 490,10 490,300 10,300" fill="#FFD700" class="room" onclick="sendCommand('dnevni boravak')" />
+            <text x="250" y="155" class="room-label" text-anchor="middle">Dnevni Boravak</text>
+            
+            <polygon points="490,10 790,10 790,200 490,200" fill="#ADFF2F" class="room" onclick="sendCommand('kuhinja')" />
+            <text x="640" y="105" class="room-label" text-anchor="middle">Kuhinja</text>
+            
+            <polygon points="10,300 300,300 300,590 10,590" fill="#87CEFA" class="room" onclick="sendCommand('spavaća soba 1')" />
+            <text x="155" y="445" class="room-label" text-anchor="middle">
+                <tspan x="155" dy="-0.7em">Spavaća</tspan>
+                <tspan x="155" dy="1.4em">Soba 1</tspan>
+            </text>
+            
+            <polygon points="300,300 590,300 590,590 300,590" fill="#DDA0DD" class="room" onclick="sendCommand('spavaća soba 2')" />
+            <text x="370" y="445" class="room-label" text-anchor="middle">
+                <tspan x="370" dy="-0.7em">Spavaća</tspan>
+                <tspan x="370" dy="1.4em">Soba 2</tspan>
+            </text>
+            
+            <polygon points="590,300 790,300 790,590 590,590" fill="#B0E0E6" class="room" onclick="sendCommand('kupaonica')" />
+            <text x="690" y="445" class="room-label" text-anchor="middle">Kupaonica</text>
+            
+            <polygon points="490,200 790,200 790,300 590,300 590,590 490,590" fill="#F5DEB3" class="room" onclick="sendCommand('hodnik')" />
+            <text x="640" y="250" class="room-label" text-anchor="middle">Hodnik</text>
+
+            <!-- Zidovi -->
+            <line x1="10" y1="10" x2="790" y2="10" stroke="#333" stroke-width="5" />
+            <line x1="10" y1="10" x2="10" y2="590" stroke="#333" stroke-width="5" />
+            <line x1="10" y1="590" x2="790" y2="590" stroke="#333" stroke-width="5" />
+            <line x1="790" y1="10" x2="790" y2="590" stroke="#333" stroke-width="5" />
+            <line x1="490" y1="10" x2="490" y2="590" stroke="#333" stroke-width="3" />
+            <line x1="10" y1="300" x2="490" y2="300" stroke="#333" stroke-width="3" />
+            <line x1="300" y1="300" x2="300" y2="590" stroke="#333" stroke-width="3" />
+            <line x1="590" y1="300" x2="590" y2="590" stroke="#333" stroke-width="3" />
+            <line x1="490" y1="200" x2="790" y2="200" stroke="#333" stroke-width="3" />
+            <line x1="590" y1="300" x2="790" y2="300" stroke="#333" stroke-width="3" /> <!-- Dodana linija za kupaonicu -->
+
+            <!-- Vrata -->
+            <path d="M490,300 A30,30 0 0,1 520,270" class="door" />
+            <path d="M490,200 A30,30 0 0,0 460,170" class="door" />
+            <path d="M590,400 A30,30 0 0,0 560,370" class="door" />
+            <path d="M300,400 A30,30 0 0,1 330,370" class="door" />
+            <path d="M400,300 A30,30 0 0,0 370,270" class="door" />
+
+            <!-- Prozori -->
+            <rect x="7" y="100" width="6" height="100" fill="#87CEEB" />
+            <rect x="787" y="50" width="6" height="100" fill="#87CEEB" />
+            <rect x="7" y="400" width="6" height="100" fill="#87CEEB" />
+            <rect x="320" y="587" width="100" height="6" fill="#87CEEB" />
+            <rect x="690" y="587" width="100" height="6" fill="#87CEEB" />
+        </svg>
     </div>
 
     <script>
@@ -76,6 +114,5 @@
             window.location.href = 'http://192.168.1.184/stt?text=' + encodeURIComponent(command);
         }
     </script>
-
 </body>
 </html>
