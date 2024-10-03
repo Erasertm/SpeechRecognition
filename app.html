@@ -17,19 +17,35 @@
         .room {
             position: absolute;
             border: 1px solid #000;
-            background-color: #f2f2f2;
-            text-align: center;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            text-align: center;
+            padding: 5px;
+            box-sizing: border-box;
         }
         .room:hover {
-            background-color: #e6e6e6;
+            opacity: 0.8;
         }
+        /* Boje za svaku sobu */
+        .dnevni-boravak {
+            background-color: #FFD700; /* Zlatna */
+        }
+        .kuhinja {
+            background-color: #ADFF2F; /* Zelena */
+        }
+        .soba {
+            background-color: #87CEFA; /* Plava */
+        }
+        .svjetlo {
+            background-color: #FFB6C1; /* Roza */
+        }
+        /* Stil za tekst unutar soba */
         .room span {
-            position: absolute;
-            width: 100%;
-            top: 50%;
-            transform: translateY(-50%);
             font-weight: bold;
+            font-size: 18px;
         }
     </style>
 </head>
@@ -38,19 +54,19 @@
     <h1 style="text-align: center;">Tlocrt Trosobnog Stana</h1>
     <div id="floorplan">
         <!-- Dnevni Boravak -->
-        <div class="room" style="left: 0; top: 0; width: 300px; height: 200px;" onclick="sendCommand('dnevni boravak')">
+        <div class="room dnevni-boravak" style="left: 0; top: 0; width: 300px; height: 200px;" onclick="sendCommand('dnevni boravak')">
             <span>Dnevni Boravak</span>
         </div>
         <!-- Kuhinja -->
-        <div class="room" style="left: 300px; top: 0; width: 300px; height: 200px;" onclick="sendCommand('kuhinja')">
+        <div class="room kuhinja" style="left: 300px; top: 0; width: 300px; height: 200px;" onclick="sendCommand('kuhinja')">
             <span>Kuhinja</span>
         </div>
         <!-- Soba -->
-        <div class="room" style="left: 0; top: 200px; width: 300px; height: 200px;" onclick="sendCommand('soba')">
+        <div class="room soba" style="left: 0; top: 200px; width: 300px; height: 200px;" onclick="sendCommand('soba')">
             <span>Soba</span>
         </div>
         <!-- Svjetlo -->
-        <div class="room" style="left: 300px; top: 200px; width: 300px; height: 200px;" onclick="sendCommand('svjetlo')">
+        <div class="room svjetlo" style="left: 300px; top: 200px; width: 300px; height: 200px;" onclick="sendCommand('svjetlo')">
             <span>Svjetlo</span>
         </div>
     </div>
